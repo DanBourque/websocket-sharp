@@ -51,11 +51,9 @@ using System.Collections.Specialized;
 using System.IO;
 using System.IO.Compression;
 using System.Net.Sockets;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using WebSocketSharp.Net;
 using WebSocketSharp.Net.WebSockets;
-using WebSocketSharp.Server;
 
 namespace WebSocketSharp
 {
@@ -161,16 +159,6 @@ namespace WebSocketSharp
       }
 
       return ret;
-    }
-
-    internal static string CheckIfAvailable (
-      this ServerState state, bool ready, bool start, bool shutting)
-    {
-      return (!ready && (state == ServerState.Ready || state == ServerState.Stop)) ||
-             (!start && state == ServerState.Start) ||
-             (!shutting && state == ServerState.ShuttingDown)
-             ? "This operation isn't available in: " + state.ToString ().ToLower ()
-             : null;
     }
 
     internal static string CheckIfAvailable (
